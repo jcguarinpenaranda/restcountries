@@ -51,15 +51,34 @@ app.get('/', API.index);
 
 app.get('/api/', API.index);
 
-app.get('/api/v1', API.getAll);
+app.get('/api/v1/regions', API.regions)
 
-app.get('/api/v1/callingcode/:callingCode', API.callingCode)
+app.get('/api/v1/regions/:regionName', API.region)
 
-app.get('/api/v1/region/:regionName', API.region)
+app.get('/api/v1/subregions', API.subregions)
 
-app.get('/api/v1/subregion/:subregionName', API.subregion)
+app.get('/api/v1/subregions/:subregionName', API.subregion)
 
-app.get('/api/v1/currency/:currency_code', API.currency)
+app.get('/api/v1/currencies', API.currencies);
+
+app.get('/api/v1/currencies/:currency_code', API.oneCurrency);
+
+app.get('/api/v1/countries', API.getAll);
+
+app.get('/api/v1/countries/callingcode/:callingCode', API.callingCode)
+
+app.get('/api/v1/countries/currency/:currency_code', API.currency)
+
+app.get('/api/v1/countries/cca2/:country_code', API.countryCodeCCA2);
+
+app.get('/api/v1/countries/cca3/:country_code', API.countryCodeCCA3);
+
+app.get('/api/v1/countries/:country_code', API.countryCodeCCA2)
+
+app.get('/api/v1/langs', API.langs)
+
+app.get('/api/v1/langs/:lang_code', API.lang)
+
 
 /**
  * 500 Error Handler.
@@ -78,8 +97,8 @@ app.use(function(err, req, res, next){
   // error page
   res.status(500).json({
     error: err,
-    pkg: pkg,
-    CONFIG: CONFIG
+    //pkg: pkg,
+    //CONFIG: CONFIG
   })
 })
 
